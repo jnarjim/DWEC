@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 9</title>
+    <style>
+        #boton {
+            position:absolute;
+            display: none;
+        }
+        body {
+            height: 200vh;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Primera linea o cabecera</h1>
+<div id="boton">Boton</div>
+
+<script>
+    let boton = document.getElementById("boton");
+    let altura = document.querySelector("h1").offsetHeight;
+
+    function scroll() {
+        if (window.scrollY > altura) {
+            boton.style.display = "block";
+            boton.style.bottom = "20px";
+            boton.style.position = "fixed";
+            boton.style.left = "50%";
+        } else {
+            boton.style.display = "none";
+        }
+    }
+    document.addEventListener("scroll", scroll);
+</script>
+
+</body>
+</html>

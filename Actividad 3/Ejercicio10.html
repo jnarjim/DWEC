@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+</head>
+<body>
+
+    <form>
+        <label>No se aceptan dígitos</label>
+        <input type="text" id="letras">
+    </form>
+
+    <script>
+        let input = document.getElementById("letras");
+
+        function esNumero(event) {
+            if (event.key >= "0" && event.key <= "9") {
+                event.preventDefault();
+            }
+        }
+        input.addEventListener("keydown", esNumero)
+    </script>
+    
+</body>
+</html>

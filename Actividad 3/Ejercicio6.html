@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+
+    <div>
+        <label>Coordenada X:</label>
+        <input id="cX" readonly>
+    </div>
+    <div>
+        <label>Coordenada Y:</label>
+        <input id="cY" readonly>
+    </div>
+
+    <script>
+        function mostrarCoordenadas(event) {
+
+            let x = event.clientX;
+            let y = event.clientY;
+
+            document.getElementById("cX").value = x;
+            document.getElementById("cY").value = y;
+        }
+
+        window.onload = function() {
+
+            document.addEventListener("mousemove", mostrarCoordenadas);
+        };
+    </script>
+
+</body>
+</html>

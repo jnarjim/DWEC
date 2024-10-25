@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+
+    <form>
+        <input id="precio" type="number" placeholder="Precio">
+        <input id="cantidad" type="number" placeholder="Cantidad">
+        <input type="button" id="enviar" value="Calcular">
+        <input id="total" type="text" readonly placeholder="Total">
+    </form>
+
+    <script>
+        document.getElementById("enviar").addEventListener("click", function() {
+
+            let precio = parseFloat(document.getElementById("precio").value);
+            let cantidad = parseFloat(document.getElementById("cantidad").value);
+            
+            let total = precio * cantidad;
+            
+            document.getElementById("total").value = total;
+        });
+    </script>
+
+</body>
+</html>

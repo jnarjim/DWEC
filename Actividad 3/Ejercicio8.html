@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+    <style>
+        .oculto {
+            display:none
+        }
+        .visible {
+            display:block
+        }
+    </style>
+</head>
+<body>
+
+        <div class="oculto" id="ficha1">
+        Hola, soy el bloque 1</div>
+        <div class="oculto" id="ficha2">
+        Hola, soy el bloque 2</div>
+        <div class="oculto" id="ficha3">
+        Hola, soy el bloque 3</div>
+
+        <script>
+            function mostrarBloque(event) {
+                let bloque1 = document.getElementById("ficha1");
+                let bloque2 = document.getElementById("ficha2");
+                let bloque3 = document.getElementById("ficha3");
+
+                bloque1.classList.remove("visible");
+                bloque1.classList.add("oculto");
+
+                bloque2.classList.remove("visible");
+                bloque2.classList.add("oculto");
+                
+                bloque3.classList.remove("visible");
+                bloque3.classList.add("oculto");
+
+                switch (event.key) {
+                    case "1":
+                        bloque1.classList.remove("oculto");
+                        bloque1.classList.add("visible");
+                        break;
+                    case "2":
+                        bloque2.classList.remove("oculto");
+                        bloque2.classList.add("visible");
+                        break;
+                    case "3":
+                        bloque3.classList.remove("oculto");
+                        bloque3.classList.add("visible");
+                        break;
+                }
+            }
+
+            document.addEventListener("keydown", mostrarBloque);
+        </script>
+
+</body>
+</html>

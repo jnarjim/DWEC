@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+    <style>
+        #bloque {
+            background-color: lightblue;
+            border: 1px solid black;
+            padding: 15px 30px;
+            text-align: center;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        #efecto {
+            margin-top: 25px;
+            padding: 15px 30px;
+            background-color: lightcoral;
+            border: 1px solid black;
+            text-align: center;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bloque" onmouseover="cambiarColor()">Pasa por aquí</div>
+
+    <div id="efecto">Efectos del movimiento</div>
+
+    <script>
+        function cambiarColor() {
+            document.getElementById('efecto').style.backgroundColor = "green";
+        }
+    </script>
+    
+</body>
+</html>
