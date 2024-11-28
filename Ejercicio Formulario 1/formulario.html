@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+    <script>
+        var numero1, numero2, resultadoCorrecto;
+
+        function generarSuma() {
+            numero1 = Math.floor(Math.random() * 10);
+            numero2 = Math.floor(Math.random() * 10);
+            resultadoCorrecto = numero1 + numero2;
+            document.getElementById("suma").textContent = `${numero1} + ${numero2} = ?`;
+        }
+
+        function validarNombre() {
+            var nombre = document.getElementById("nombre").value;
+            var mensajeError = document.getElementById("errorNombre");
+
+            if (nombre === "") {
+                mensajeError.textContent = "El nombre no puede estar vacío.";
+                document.getElementById("nombre").focus();
+                return false;
+            } else {
+                mensajeError.textContent = "";
+                return true;
+            }
+        }
+
+        function validarCorreo() {
+            var correo = document.getElementById("correo").value;
+            var mensajeError = document.getElementById("errorCorreo");
+            var regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!regexCorreo.test(correo)) {
+                mensajeError.textContent = "Por favor ingrese un correo electrónico válido.";
+                document.getElementById("correo").focus();
+                return false;
+            } else {
+                mensajeError.textContent = "";
+                return true;
+            }
+        }
+
+        function validarContrasena() {
+            var contrasena = document.getElementById("contrasena").value;
+            var mensajeError = document.getElementById("errorContrasena");
+            var regexContrasena = /^(?=.*\d).{8,}$/;
+
+            if (!regexContrasena.test(contrasena)) {
+                mensajeError.textContent = "La contraseña debe tener al menos 8 caracteres y contener al menos un dígito.";
+                document.getElementById("contrasena").focus();
+                return false;
+            } else {
+                mensajeError.textContent = "";
+                return true;
+            }
+        }
+
+        function validarRepetirContrasena() {
+            var contrasena = document.getElementById("contrasena").value;
+            var repetirContrasena = document.getElementById("repetirContrasena").value;
+            var mensajeError = document.getElementById("errorRepetirContrasena");
+
+            if (contrasena !== repetirContrasena) {
+                mensajeError.textContent = "Las contraseñas no coinciden.";
+                document.getElementById("repetirContrasena").focus();
+                return false;
+            } else {
+                mensajeError.textContent = "";
+                return true;
+            }
+        }
+
+        function validarSuma() {
+            var respuestaSuma = parseInt(document.getElementById("respuestaSuma").value);
+            var mensajeError = document.getElementById("errorSuma");
+
+            if (respuestaSuma !== resultadoCorrecto) {
+                mensajeError.textContent = "La respuesta a la suma es incorrecta.";
+                document.getElementById("respuestaSuma").focus();
+                return false;
+            } else {
+                mensajeError.textContent = "";
+                return true;
+            }
+        }
+
+        function habilitarEnvio() {
+            var aceptarCondiciones = document.getElementById("aceptarCondiciones").checked;
+            var botonEnviar = document.getElementById("botonEnviar");
+            
+            botonEnviar.disabled = !aceptarCondiciones;
+        }
+
+        function validarFormulario() {
+            var esNombreValido = validarNombre();
+            var esCorreoValido = validarCorreo();
+            var esContrasenaValida = validarContrasena();
+            var esRepetirContrasenaValida = validarRepetirContrasena();
+            var esSumaValida = validarSuma();
+            var aceptarCondiciones = document.getElementById("aceptarCondiciones").checked;
+
+            if (!esNombreValido || !esCorreoValido || !esContrasenaValida || !esRepetirContrasenaValida || !esSumaValida || !aceptarCondiciones) {
+                if (!aceptarCondiciones) {
+                    alert("Debe aceptar las condiciones antes de enviar el formulario.");
+                }
+                return false;
+            }
+
+            return true;
+        }
+
+        window.onload = function() {
+            generarSuma();
+            habilitarEnvio();
+        }
+    </script>
+</head>
+<body>
+    <h2>Formulario de Registro</h2>
+
+    <form onsubmit="return validarFormulario()">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" oninput="validarNombre()">
+        <div id="errorNombre" class="error"></div>
+        <br><br>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" oninput="validarCorreo()">
+        <div id="errorCorreo" class="error"></div>
+        <br><br>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" oninput="validarContrasena()">
+        <div id="errorContrasena" class="error"></div>
+        <br><br>
+
+        <label for="repetirContrasena">Repetir Contraseña:</label>
+        <input type="password" id="repetirContrasena" name="repetirContrasena" oninput="validarRepetirContrasena()">
+        <div id="errorRepetirContrasena" class="error"></div>
+        <br><br>
+
+        <label for="respuestaSuma" id="suma"></label>
+        <input type="text" id="respuestaSuma" name="respuestaSuma" oninput="validarSuma()">
+        <div id="errorSuma" class="error"></div>
+        <br><br>
+
+        <label>
+            <input type="checkbox" id="aceptarCondiciones" onclick="habilitarEnvio()"> Acepto las condiciones
+        </label>
+        <br><br>
+
+        <button type="submit" id="botonEnviar" disabled>Crear cuenta</button>
+    </form>
+</body>
+</html>
