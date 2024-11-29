@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+</head>
+<body>
+    <form id="formularioDatosPersonales" style="margin-left: 20px">
+        <fieldset>
+            <legend>datos personales</legend>
+            
+            <div style="margin-bottom: 15px">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>*
+
+                <label for="primerApellido">Primer apellido:</label>
+                <input type="text" id="primerApellido" name="primerApellido" required>*
+
+                <label for="segundoApellido">Segundo apellido:</label>
+                <input type="text" id="segundoApellido" name="segundoApellido" required>*
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <label for="direccion">Dirección:</label>
+                <input 
+                    type="text" 
+                    id="direccion" 
+                    name="direccion"
+                    placeholder="calle o plaza, número y piso" 
+                    required
+                    size="50">
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <label for="telefono">Teléfono:</label>
+                <input type="text"
+                id="telefono"
+                name="telefono"
+                placeholder="123 33 33 33"
+                required
+                size="10">*
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <label for="email">E-mail:</label>
+                <input type="text"
+                id="email"
+                name="email"
+                placeholder="ejemplo@ejemplo.com"
+                required
+                size="35">*
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password"
+                id="contrasena"
+                name="contrasena"
+                required
+                size="20">*
+            </div>
+
+            <div> Sexo<br>
+              <label>
+                <input type="radio" id="varon" name="sexo" value="varon"> Varón
+              </label>
+              <br>
+              <label>
+                <input type="radio" id="mujer" name="sexo" value="mujer"> Mujer
+              </label>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Nivel de estudios e intereses</legend>
+
+            <div style="margin-bottom: 15px"> Nivel de estudios:<br>
+                <input type="radio" id="certificado" name="estudios1" value="certificado">
+                <label for="estudios1">Certificado escolar</label><br>
+                <input type="radio" id="graduado" name="estudios2" value="graduado">
+                <label for="articulos2">Graduado en E.S.O.</label><br>
+                <input type="radio" id="bachiller" name="estudios3" value="bachiller">
+                <label for="estudios3">Bachiller - Formación Profesional</label><br>
+                <input type="radio" id="diplomado" name="estudios4" value="diplomado">
+                <label for="estudios4">Diplomado</label><br>
+                <input type="radio" id="licenciado" name="estudios5" value="licenciado">
+                <label for="estudios5">Licenciado o Doctorado</label><br>
+            </div>
+            
+              <div> Recibir artículos sobre los siguientes temas:<br>
+                  <input type="checkbox" id="musica" name="articulos1" value="musica">
+                  <label for="articulos1">Música</label><br>
+                  <input type="checkbox" id="deportes" name="articulos2" value="deportes">
+                  <label for="articulos2">Deportes</label><br>
+                  <input type="checkbox" id="cine" name="articulos3" value="cine">
+                  <label for="articulos3">Cine</label><br>
+                  <input type="checkbox" id="libros" name="articulos4" value="libros">
+                  <label for="articulos4">Libros</label><br>
+                  <input type="checkbox" id="ciencia" name="articulos5" value="ciencia">
+                  <label for="articulos5">Ciencia</label><br>
+              </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos sobre la revista</legend>
+
+            <div style="margin-bottom: 15px">
+                <label for="frecuencia">Frecuencia con la que se recibirá la revista:</label><br>
+                <select name="frecuencia" id="frecuencia">
+                    <option value="semanal">Semanal</option>
+                    <option value="mensual">Mensual</option>
+                    <option value="diaria">Diaria</option>
+                  </select>
+            </div>
+
+            <p>Puedes mandar tu artículo sobre cualquier tema de los que tratamos. Nosotros lo valoramos para que pueda ser publicado.</p>
+
+           <div style="margin-bottom: 15px">
+            <label for="file">Mandar artículo:</label>
+            <input type="file" id="file" name="file"> 
+           </div>
+
+           <div>
+            <label for="comentario">Si deseas mandar simplemente una opinión o comentario escribelo aquí:</label><br>
+            <textarea id="comentario" name="comentario" rows="4" cols="50" placeholder="Escribe tu comentario..."></textarea>*
+           </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Comenzar de nuevo</legend>
+
+            <div>
+                <label>Borrar todos los datos del formulario y volver a empezar:</label><br>
+                <input type="reset">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>enviar</legend>
+
+            <div>
+                <label>Enviar formulario por correo electronico: Al pulsar el botón se abrirá la página de envío de correo: en esa página pulsa para enviar:</label><br>
+                <button type="submit">Enviar por Correo</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <script>
+        document.getElementById('formularioDatosPersonales').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let nombre = document.getElementById('nombre').value.trim();
+            let primerApellido = document.getElementById('primerApellido').value.trim();
+            let segundoApellido = document.getElementById('segundoApellido').value.trim();
+            let direccion = document.getElementById('direccion').value.trim();
+            let telefono = document.getElementById('telefono').value.trim();
+
+            if (nombre && primerApellido && segundoApellido && direccion && telefono) {
+                alert('Formulario enviado con éxito.');
+            } else {
+                alert('Por favor, complete todos los campos.');
+            }
+        });
+    </script>
+</body>
+</html>
+
