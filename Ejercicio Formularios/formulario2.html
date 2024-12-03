@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro - Cádiz</title>
+</head>
+<body>
+    <h1>Registro de Personas - Provincia de Cádiz</h1>
+    <form id="registroForm" action="grabar.php" method="post" novalidate>
+        <!-- Nombre de Usuario -->
+        <div>
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="username" name="username" placeholder="Introduce tu usuario">
+            <div id="error-username"></div>
+        </div>
+
+        <!-- Contraseña -->
+        <div>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Introduce tu contraseña">
+            <div id="error-password"></div>
+        </div>
+
+        <!-- Población -->
+        <div>
+            <label for="poblacion">Población</label>
+            <select id="poblacion" name="poblacion">
+                <option value="">- Seleccione -</option>
+                <option value="Alcalá de los Gazules">Alcalá de los Gazules</option>
+                <option value="Alcalá del Valle">Alcalá del Valle</option>
+                <option value="Algeciras">Algeciras</option>
+                <option value="Barbate">Barbate</option>
+                <option value="Cádiz">Cádiz</option>
+                <option value="Chipiona">Chipiona</option>
+                <option value="Conil de la Frontera">Conil de la Frontera</option>
+                <option value="El Puerto de Santa María">El Puerto de Santa María</option>
+                <option value="Jerez de la Frontera">Jerez de la Frontera</option>
+                <option value="San Fernando">San Fernando</option>
+                <option value="Sanlúcar de Barrameda">Sanlúcar de Barrameda</option>
+                <option value="Tarifa">Tarifa</option>
+                <option value="Vejer de la Frontera">Vejer de la Frontera</option>
+                <option value="Zahara de la Sierra">Zahara de la Sierra</option>
+            </select>
+            <div id="error-poblacion"></div>
+        </div>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script>
+        document.getElementById("registroForm").addEventListener("submit", function(event) {
+            let isValid = true;
+
+            // Validación del nombre de usuario
+            const username = document.getElementById("username").value.trim();
+            const usernameError = document.getElementById("error-username");
+            if (username.length < 8 || username.includes(" ")) {
+                usernameError.textContent = 'El dato "Nombre de usuario" debe tener al menos 8 caracteres y no contener espacios.';
+                isValid = false;
+            } else {
+                usernameError.textContent = '';
+            }
+
+            // Validación de la contraseña
+            const password = document.getElementById("password").value.trim();
+            const passwordError = document.getElementById("error-password");
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/;
+            if (!passwordRegex.test(password)) {
+                passwordError.textContent = 'El dato "Contraseña" debe tener entre 6 y 10 caracteres, al menos un dígito y una letra mayúscula.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // Validación de la población
+            const poblacion = document.getElementById("poblacion").value;
+            const poblacionError = document.getElementById("error-poblacion");
+            if (poblacion === "") {
+                poblacionError.textContent = 'Debe seleccionar una población válida.';
+                isValid = false;
+            } else {
+                poblacionError.textContent = '';
+            }
+
+            // Si hay errores, evita que el formulario se envíe
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
