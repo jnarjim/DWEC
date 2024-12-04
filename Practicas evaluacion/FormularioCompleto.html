@@ -77,30 +77,32 @@
             <legend>Nivel de estudios e intereses</legend>
 
             <div style="margin-bottom: 15px"> Nivel de estudios:<br>
-                <input type="radio" id="certificado" name="estudios1" value="certificado">
-                <label for="estudios1">Certificado escolar</label><br>
-                <input type="radio" id="graduado" name="estudios2" value="graduado">
-                <label for="articulos2">Graduado en E.S.O.</label><br>
-                <input type="radio" id="bachiller" name="estudios3" value="bachiller">
-                <label for="estudios3">Bachiller - Formación Profesional</label><br>
-                <input type="radio" id="diplomado" name="estudios4" value="diplomado">
-                <label for="estudios4">Diplomado</label><br>
-                <input type="radio" id="licenciado" name="estudios5" value="licenciado">
-                <label for="estudios5">Licenciado o Doctorado</label><br>
+                <input type="radio" id="certificado" name="estudios" value="certificado">
+                <label for="certificado">Certificado escolar</label><br>
+                <input type="radio" id="graduado" name="estudios" value="graduado">
+                <label for="graduado">Graduado en E.S.O.</label><br>
+                <input type="radio" id="bachiller" name="estudios" value="bachiller">
+                <label for="bachiller">Bachiller - Formación Profesional</label><br>
+                <input type="radio" id="diplomado" name="estudios" value="diplomado">
+                <label for="diplomado">Diplomado</label><br>
+                <input type="radio" id="licenciado" name="estudios" value="licenciado">
+                <label for="licenciado">Licenciado o Doctorado</label><br>
             </div>
             
-              <div> Recibir artículos sobre los siguientes temas:<br>
-                  <input type="checkbox" id="musica" name="articulos1" value="musica">
-                  <label for="articulos1">Música</label><br>
-                  <input type="checkbox" id="deportes" name="articulos2" value="deportes">
-                  <label for="articulos2">Deportes</label><br>
-                  <input type="checkbox" id="cine" name="articulos3" value="cine">
-                  <label for="articulos3">Cine</label><br>
-                  <input type="checkbox" id="libros" name="articulos4" value="libros">
-                  <label for="articulos4">Libros</label><br>
-                  <input type="checkbox" id="ciencia" name="articulos5" value="ciencia">
-                  <label for="articulos5">Ciencia</label><br>
-              </div>
+            
+            <div> Recibir artículos sobre los siguientes temas:<br>
+                <input type="checkbox" id="musica" name="articulos" value="musica">
+                <label for="musica">Música</label><br>
+                <input type="checkbox" id="deportes" name="articulos" value="deportes">
+                <label for="deportes">Deportes</label><br>
+                <input type="checkbox" id="cine" name="articulos" value="cine">
+                <label for="cine">Cine</label><br>
+                <input type="checkbox" id="libros" name="articulos" value="libros">
+                <label for="libros">Libros</label><br>
+                <input type="checkbox" id="ciencia" name="articulos" value="ciencia">
+                <label for="ciencia">Ciencia</label><br>
+            </div>
+            
 
         </fieldset>
 
@@ -151,21 +153,84 @@
     </form>
 
     <script>
-        document.getElementById('formularioDatosPersonales').addEventListener('submit', function(event) {
+        function validacion(event) {
+            // Detiene el comportamiento predeterminado del formulario (enviar datos y recargar la página). Esto permite realizar validaciones antes de proceder.
             event.preventDefault();
-            let nombre = document.getElementById('nombre').value.trim();
-            let primerApellido = document.getElementById('primerApellido').value.trim();
-            let segundoApellido = document.getElementById('segundoApellido').value.trim();
-            let direccion = document.getElementById('direccion').value.trim();
-            let telefono = document.getElementById('telefono').value.trim();
-
-            if (nombre && primerApellido && segundoApellido && direccion && telefono) {
-                alert('Formulario enviado con éxito.');
-            } else {
-                alert('Por favor, complete todos los campos.');
+    
+            let errores = []; // Es un array donde se almacenan mensajes de error para cada campo que no pase la validación.
+            let primerCampoErroneo = null; //  Almacena el primer campo que presenta un error para poder enfocar automáticamente en él.
+    
+            // Validar Nombre
+            let nombre = document.getElementById('nombre'); // Obtenemos el campo por su ID
+            let nombrePattern = /^[a-zA-Z\s]+$/; // Definimos el patrón permitido (solo letras y espacios)
+            if (!nombre.value.trim().match(nombrePattern)) {
+                errores.push("El campo 'Nombre' solo puede contener letras y espacios."); // Agregamos un mensaje de error si no coincide
+                if (!primerCampoErroneo) primerCampoErroneo = nombre; // Si es el primer error, lo almacenamos
             }
-        });
-    </script>
+    
+            // Validar Apellidos
+            let primerApellido = document.getElementById('primerApellido');
+            let segundoApellido = document.getElementById('segundoApellido');
+            if (!primerApellido.value.trim().match(nombrePattern)) {
+                errores.push("El campo 'Primer apellido' solo puede contener letras y espacios.");
+                if (!primerCampoErroneo) primerCampoErroneo = primerApellido;
+            }
+            if (!segundoApellido.value.trim().match(nombrePattern)) {
+                errores.push("El campo 'Segundo apellido' solo puede contener letras y espacios.");
+                if (!primerCampoErroneo) primerCampoErroneo = segundoApellido;
+            }
+    
+            // Validar Dirección
+            let direccion = document.getElementById('direccion');
+            let direccionPattern = /^(.+\s+\d+.*)$/;  // Debe contener una palabra seguida de un número
+            if (!direccion.value.trim().match(direccionPattern)) {
+                errores.push("El campo 'Dirección' debe incluir calle/plaza y número.");
+                if (!primerCampoErroneo) primerCampoErroneo = direccion;
+            }
+    
+            // Validar Teléfono
+            let telefono = document.getElementById('telefono');
+            let telefonoPattern = /^\d{3}\s\d{3}\s\d{3}$/; // Formato de tres grupos de tres numeros
+            if (!telefono.value.trim().match(telefonoPattern)) {
+                errores.push("El campo 'Teléfono' debe tener un formato válido (123 456 789).");
+                if (!primerCampoErroneo) primerCampoErroneo = telefono;
+            }
+    
+            // Validar Email
+            let email = document.getElementById('email');
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Formato estándar de correo
+            if (!email.value.trim().match(emailPattern)) {
+                errores.push("El campo 'E-mail' debe tener un formato válido (ejemplo@dominio.com).");
+                if (!primerCampoErroneo) primerCampoErroneo = email;
+            }
+    
+            // Validar Contraseña
+            let contrasena = document.getElementById('contrasena');
+            let contrasenaPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Debe tener al menos una letra, un numero y 6 caracteres
+            if (!contrasena.value.trim().match(contrasenaPattern)) {
+                errores.push("El campo 'Contraseña' debe tener al menos 6 caracteres, incluyendo una letra y un número.");
+                if (!primerCampoErroneo) primerCampoErroneo = contrasena;
+            }
+    
+            // Validar Comentarios (si están llenos)
+            let comentario = document.getElementById('comentario');
+            if (comentario.value.trim() && comentario.value.trim().length <= 10) { // Si hay un comentario debe tener al menos 10 caracteres
+                errores.push("El comentario debe tener al menos 10 caracteres si se introduce.");
+                if (!primerCampoErroneo) primerCampoErroneo = comentario;
+            }
+    
+            // Mostrar errores si los hay
+            if (errores.length > 0) {
+                alert("Se encontraron los siguientes errores:\n\n" + errores.join("\n")); // Alerta con la lista de errores
+                primerCampoErroneo.focus(); // Se centra en el primer campo erróneo
+            } else {
+                alert("Datos enviados correctamente."); // Si no hay errores
+            }
+        }
+    
+        // Asociar la función al botón de envío
+        document.getElementById('formularioDatosPersonales').addEventListener('submit', validacion); // Llama a la función validacion cuando se intente enviar el formulario.
+    </script>    
+    
 </body>
 </html>
-

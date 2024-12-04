@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numeros curiosos</title>
+    <script src="funcionesExamen.js"></script>
+</head>
+<body>
+    <h1>Números Curiosos</h1>
+    <script>
+        // Buscar los primeros 5 números curiosos
+        let curiosos = [];
+        let numero = 1;
+
+        while (curiosos.length < 5) {
+            if (esCurioso(numero)) {
+                curiosos.push(numero);
+            }
+            numero++;
+        }
+
+        // Mostrar los números curiosos en un mensaje de alerta
+        alert(`Los primeros 5 números curiosos son: ${curiosos.join(", ")}`);
+    </script>
+</body>
+</html>
