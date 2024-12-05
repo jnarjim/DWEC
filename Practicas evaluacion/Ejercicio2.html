@@ -3,83 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario</title>
 </head>
 <body>
-    <h1>Configuraión de usuario</h1>
-    <h2>Inicio de sesión</h2>
+    <form>
+        <h1>Configuraión de usuario</h1>
+        <h2>Inicio de sesión</h2>
 
-    <div style="margin-bottom: 15px">
-        <label for="frecuencia">¿Cuándo quieres que Windows te vuelva a pedir inicio de sesión?</label>
-        <select name="frecuencia" id="frecuencia">
-            <option value="suspensión">Cuando el PC se activa tras haber estado en suspensión</option>
-            <option value="nunca">Nunca</option>
-          </select>
-    </div>
+        <div style="margin-bottom: 15px">
+            <label for="frecuencia">¿Cuándo quieres que Windows te vuelva a pedir inicio de sesión?</label>
+            <select name="frecuencia" id="frecuencia">
+                <option value="suspensión">Cuando el PC se activa tras haber estado en suspensión</option>
+                <option value="nunca">Nunca</option>
+            </select>
+        </div>
 
-    <h2>Contraseña</h2>
+        <h2>Contraseña</h2>
 
-    <div style="margin-bottom: 15px">
-        <label for="password">Nueva contraseña</label>
-        <input type="password" id="password">
-    </div>
+        <div style="margin-bottom: 15px">
+            <label for="password">Nueva contraseña</label>
+            <input type="password" id="password">
+        </div>
 
-    <div style="margin-bottom: 15px">
-        <label for="repetir">Vuelve a escribir la contraseña</label>
-        <input type="password" id="repetir">
-    </div>
+        <div style="margin-bottom: 15px">
+            <label for="repetir">Vuelve a escribir la contraseña</label>
+            <input type="password" id="repetir">
+        </div>
 
-    <div style="margin-bottom: 15px">
-        <label for="indicio">Indicio de contraseña</label>
-        <textarea name="indicio" id="indicio"></textarea>
-    </div>
+        <div style="margin-bottom: 15px">
+            <label for="indicio">Indicio de contraseña</label>
+            <textarea name="indicio" id="indicio"></textarea>
+        </div>
 
-    <h2>Privacidad</h2>
+        <h2>Privacidad</h2>
 
-    <div style="margin-bottom: 15px">
-        <input type="checkbox" id="privacidad" value="privacidad">
-        <label for="privacidad">Mostrar detalles de la cuenta en la pantalla de inicio de sesión </label>
-    </div>
+        <div style="margin-bottom: 15px">
+            <input type="checkbox" id="privacidad" value="privacidad">
+            <label for="privacidad">Mostrar detalles de la cuenta en la pantalla de inicio de sesión </label>
+        </div>
 
-    <div>
-        <button type="submit" id="aceptar">Aceptar</button>
-    </div>
+        <div>
+            <button type="submit" id="aceptar">Aceptar</button>
+        </div>
+    </form>
 
     <script>
+        // Selecciona el boton con ID 'aceptar' y asocia un evento 'click'
         document.getElementById('aceptar').addEventListener('click', function(event) {
-            event.preventDefault();
 
+            // Obtenemos los elementos de los campos de entrada por su ID
             let password = document.getElementById('password');
             let repetir = document.getElementById('repetir');
             let indicio = document.getElementById('indicio');
-
-             // Validar la contraseña
-             const passwordPattern = /^[A-Z][A-Za-z\d]{5,}$/; // Mayuscula al principio, al menos 6 caracteres y un dígito
-            if (!password.value.match(passwordPattern)) {
-                alert("La contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener, al menos, un dígito");
-                password.focus(); 
-                password.select();
-                return;
+    
+            // Validar la contraseña
+            // Empieza con una letra mayúscula ([A-Z])
+            // Debe contener al menos 6 caracteres, permitiendo letras y dígitos ([A-Za-z\d]{5,})
+            let patronPassword = /^[A-Z][A-Za-z\d]{5,}$/;
+    
+            // Comprobar la contraseña
+            if (!password.value.match(patronPassword)) {
+                alert("La contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener un dígito.");
+                password.focus(); // tomara el foco
+                password.select(); // se selecciona su contenido
+                return false;
             }
-
-             // Comprobar la contraseña de nuevo
-             if (password.value !== repetir.value) {
-                alert("Las contraseñas escritas no coinciden. Vuelve a intentarlo");
-                password.focus();
-                password.select();
-                return;
+    
+            // Validar la coincidencia de contraseñas
+            // Comparamos los valores de los campos de contraseña y repetir contraseña
+            if (password.value !== repetir.value) {
+                alert("La contraseña no coincide. Vuelve a intentarlo.");
+                password.focus(); // toma el foco de la primera contraseña
+                password.select(); // se selecciona su contenido
+                return false;
             }
-
-             // Validación del indicio de contraseña
-             if (indicio.value.includes(password.value)) {
+    
+            // Validar el indicio de contraseña
+            // Verificar si el indicio contiene el valor de la contraseña
+            if (indicio.value.includes(password.value)) {
                 alert("El indicio de contraseña no puede contener la contraseña.");
-                indicio.focus();
-                indicio.select();
-                return;
+                indicio.focus(); // toma el foco
+                indicio.select(); // se selecciona el contenido
+                return false;
             }
 
         });
-
     </script>
+    
 </body>
 </html>

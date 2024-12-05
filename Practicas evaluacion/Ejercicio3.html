@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+</head>
+<body>
+    <h1>Cifrado César</h1>
+    <h2>- Descifrar -</h2>
+    <div style="margin-bottom: 15px">
+        <label for="alfabeto">Alfabeto</label>
+        <select name="alfabeto" id="alfabeto" onchange="rotacionMaxima()">
+            <option value="castellano">Castellano</option>
+            <option value="ingles">Inglés</option>
+        </select>
+    </div>
+
+    <div style="margin-bottom: 15px">
+        <label for="texto">Texto a descifrar</label>
+        <textarea name="texto" id="texto"></textarea>
+    </div>
+
+    <div style="margin-bottom: 15px">
+        <label for="rotacion">Nivel de Rotado</label>
+        <input type="number" id="rotacion" value="0" min="0" max="26">
+    </div>
+
+    <div>
+        <button type="button" onclick="descifrar()">Descifrar</button> 
+    </div>
+
+    <p id="resultado"></p>
+    
+</body>
+</html>
