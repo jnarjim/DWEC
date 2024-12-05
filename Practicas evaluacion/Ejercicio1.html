@@ -10,18 +10,18 @@
     <h1>Números Curiosos</h1>
     <script>
         // Buscar los primeros 5 números curiosos
-        let curiosos = [];
-        let numero = 1;
+        let curiosos = []; //array para añadir los numeros curiosos
+        let numero = 1; //numero por el que se empieza a contar
 
-        while (curiosos.length < 5) {
-            if (esCurioso(numero)) {
+        while (curiosos.length < 5) { // el bucle sigue hasta que se almacenen 5 numeros curiosos en el array
+            if (esCurioso(numero)) { // si el numero actual es curioso se almacena en el array
                 curiosos.push(numero);
             }
-            numero++;
+            numero++; // incrementa el numero
         }
 
         // Mostrar los números curiosos en un mensaje de alerta
-        alert(`Los primeros 5 números curiosos son: ${curiosos.join(", ")}`);
+        alert(`Los primeros 5 números curiosos son:` + curiosos.join(", "));
     </script>
 </body>
 </html>
