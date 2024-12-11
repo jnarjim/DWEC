@@ -6,7 +6,7 @@
     <title>Formulario</title>
 </head>
 <body>
-    <form>
+    <form onsubmit="return validarFormulario(this)">
         <h1>Configuraión de usuario</h1>
         <h2>Inicio de sesión</h2>
 
@@ -48,8 +48,8 @@
     </form>
 
     <script>
-        // Selecciona el boton con ID 'aceptar' y asocia un evento 'click' para ejecutar la función
-        document.getElementById('aceptar').addEventListener('click', function(event) {
+
+        function validarFormulario() {
 
             // Obtenemos los elementos de los campos de entrada por su ID
             let password = document.getElementById('password');
@@ -70,8 +70,8 @@
             // Comparamos los valores de los campos de contraseña y repetir contraseña
             if (password.value !== repetir.value) { // si no es igual
                 alert("La contraseña no coincide. Vuelve a intentarlo.");
-                password.focus(); // toma el foco de la primera contraseña
-                password.select(); // se selecciona su contenido
+                repetir.focus(); // toma el foco de la segunda contraseña
+                repetir.select(); // se selecciona su contenido
                 return false;
             }
     
@@ -82,8 +82,8 @@
                 indicio.select(); // se selecciona el contenido
                 return false;
             }
-
-        });
+            
+        }
     </script>
     
 </body>
