@@ -48,7 +48,7 @@
     </form>
 
     <script>
-        // Selecciona el boton con ID 'aceptar' y asocia un evento 'click'
+        // Selecciona el boton con ID 'aceptar' y asocia un evento 'click' para ejecutar la función
         document.getElementById('aceptar').addEventListener('click', function(event) {
 
             // Obtenemos los elementos de los campos de entrada por su ID
@@ -56,29 +56,25 @@
             let repetir = document.getElementById('repetir');
             let indicio = document.getElementById('indicio');
     
-            // Validar la contraseña
-            // Empieza con una letra mayúscula ([A-Z])
-            // Debe contener al menos 6 caracteres, permitiendo letras y dígitos ([A-Za-z\d]{5,})
-            let patronPassword = /^[A-Z][A-Za-z\d]{5,}$/;
+            // Contraseña mínimo de 6 caracteres, empezar por una letra mayúscula y tener al menos un dígito
+            let patronPassword = /^(?=[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
     
             // Comprobar la contraseña
-            if (!password.value.match(patronPassword)) {
+            if (!password.value.match(patronPassword)) { //si no concuerdan
                 alert("La contraseña debe empezar por una letra mayúscula, tener un mínimo de 6 caracteres y contener un dígito.");
                 password.focus(); // tomara el foco
                 password.select(); // se selecciona su contenido
                 return false;
             }
     
-            // Validar la coincidencia de contraseñas
             // Comparamos los valores de los campos de contraseña y repetir contraseña
-            if (password.value !== repetir.value) {
+            if (password.value !== repetir.value) { // si no es igual
                 alert("La contraseña no coincide. Vuelve a intentarlo.");
                 password.focus(); // toma el foco de la primera contraseña
                 password.select(); // se selecciona su contenido
                 return false;
             }
     
-            // Validar el indicio de contraseña
             // Verificar si el indicio contiene el valor de la contraseña
             if (indicio.value.includes(password.value)) {
                 alert("El indicio de contraseña no puede contener la contraseña.");
