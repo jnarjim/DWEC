@@ -16,5 +16,14 @@
     
     <p id="saludo"></p>
 
+    <script>
+        function enviarSaludo(){
+            let nombre = document.getElementById("nombre").value;
+            let apellido = document.getElementById("apellido").value;
+            let saludo = document.getElementById("saludo");
+            saludo.textContent = "Hola " + nombre + " " + apellido + ", gracias por rellenar el formulario";
+        }
+    </script>
+
     </body>
 </html>

@@ -15,5 +15,15 @@
         <li>Maecenas nisl arcu</li>
     </ul>
     <input type="button" value="Añadir elemento" onclick="anade();">
+
+    <script>
+        function anade(){
+            let lista = document.getElementById("lista");
+            let item = document.createElement("li");
+            let texto = document.createTextNode("manzana");
+            item.appendChild(texto);
+            lista.appendChild(item);
+        }
+    </script>
 </body>
 </html>

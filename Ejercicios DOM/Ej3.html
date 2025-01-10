@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ej3</title>
+    <style>
+        .oculto {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <p>
@@ -14,5 +19,14 @@
         </span>
     </p>
     <a class="enlace" href="#" onclick="muestra(); return false;">Seguir leyendo</a>
+
+    <script>
+        function muestra() {
+            let texto = document.getElementsByClassName("adicional oculto");
+            texto[0].classList.remove("oculto");
+            let enlace = document.querySelector("a");
+            enlace.classList.add("oculto");
+        }
+    </script>
 </body>
 </html>

@@ -32,5 +32,26 @@
         <a href="http://prueba5">Sed non lectus non est pellentesque</a>
         auctor.
     </p>
+
+    <script>
+        let enlaces = document.querySelectorAll("a");
+        alert("El documento tiene " + enlaces.length + " enlaces");
+
+        let penultimo = [enlaces.length - 2];
+        alert("El penúltimo enlace es " + penultimo);
+
+        let enlacesPrueba = 0;
+        for (let index = 0; index < enlaces.length; index++) {
+            let element = enlaces[index];
+            if (element.getAttribute("href") === "http://prueba")
+            enlacesPrueba++;
+        }
+        alert("Los enlaces que enlazan a http://prueba son: " + enlacesPrueba)
+
+        let tercerParrafo= document.querySelectorAll("p")[2];
+        let enlacesTercerParrafo = tercerParrafo.querySelectorAll("a");
+        alert("Hay " + enlacesTercerParrafo.length + " enlaces en el tercer párrafo");
+
+    </script>
 </body>
 </html>
