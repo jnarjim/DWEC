@@ -25,6 +25,31 @@
     <input type="button" value="Operar" id="calculo" />
   </p>
   <p id="resultado"></p>
+
+  <script>
+    document.getElementById("calculo").addEventListener("click", function () {
+
+    let n1 = parseInt(document.getElementById("valor1").value);
+    let n2 = parseInt(document.getElementById("valor2").value);
+    let suma = document.getElementById("suma").checked;
+    let resta = document.getElementById("resta").checked;
+    let resultado = document.getElementById("resultado");
+
+    resultado.innerHTML = "";
+
+    if (suma) {
+      resultado.innerHTML += `<p>La suma es ${n1 + n2}</p>`;
+    }
+
+    if (resta) {
+      resultado.innerHTML += `<p>La diferencia es ${n1 - n2}</p>`;
+    }
+
+    if (sumar && restar) {
+      resultado.innerHTML += `<p>La suma es ${n1 + n2} - La diferencia es ${n1 - n2}</p>`;
+    }
+    });
+  </script>
   
 </body>
 
