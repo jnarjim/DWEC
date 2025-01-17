@@ -22,6 +22,50 @@
         <input type="submit" value="confirmar" id="confirmar" />
       </p>
     </form>
+
+    <script>
+
+      let emailInput = document.getElementById("email");
+      let urlInput = document.getElementById("url");
+      let resultadoEmail = document.getElementById("resultado1");
+      let resultadoUrl = document.getElementById("resultado2");
+      let formulario = document.getElementById("formulario");
+  
+      formulario.addEventListener("submit", function (e) {
+          let esValido = true;
+  
+          let email = emailInput.value;
+          if (!validarEmail(email)) {
+              resultadoEmail.textContent = "Ingresa un correo electrónico válido.";
+              esValido = false;
+          } else {
+              resultadoEmail.textContent = "correcto";
+          }
+  
+          let url = urlInput.value;
+          
+          if (!validarUrl(url)) {
+              resultadoUrl.textContent = "Ingresa un sitio web válido.";
+              esValido = false;
+          } else {
+              resultadoUrl.textContent = "correcto";
+          }
+  
+          if (!esValido) {
+              e.preventDefault();
+          }
+      });
+  
+      function validarEmail(email) {
+        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          return regexEmail.test(email);
+      }
+  
+      function validarUrl(url) {
+        let regexUrl = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.[a-zA-Z]{2,}(:\d+)?(\/.*)?$/;
+          return regexUrl.test(url);
+      }
+  </script>
   
 </body>
   

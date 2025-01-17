@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej11</title>
+</head>
+<body>
+    <button id="nuevoNumero">Nuevo número</button>
+    <ul id="listaNumeros"></ul>
+
+    <script>
+
+        let boton = document.getElementById("nuevoNumero");
+        let lista = document.getElementById("listaNumeros");
+
+        boton.addEventListener("click", function () {
+
+         let numeroAleatorio = Math.floor(Math.random() * 1000) + 1;
+         let nuevoElemento = document.createElement("li");
+         nuevoElemento.textContent = numeroAleatorio;
+
+         lista.appendChild(nuevoElemento);
+
+     });
+    </script>
+    
+</body>
+</html>
