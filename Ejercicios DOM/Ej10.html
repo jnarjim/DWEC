@@ -9,17 +9,17 @@
 <body>
     <form action="#" method="post" id="formulario">
       <p>
-        <label for="usuario">Ingrese email:</label>
+        <label for="email">Ingrese email:</label>
         <input type="email" id="email" />
         <span id="resultado1"></span>
       </p>
       <p>
-        <label for="sitio">Ingrese sitio web:</label>
+        <label for="url">Ingrese sitio web:</label>
         <input type="url" id="url" />
         <span id="resultado2"></span>
       </p>
       <p>
-        <input type="submit" value="confirmar" id="confirmar" />
+        <input type="submit" value="confirmar" />
       </p>
     </form>
 
@@ -30,43 +30,28 @@
       let resultadoEmail = document.getElementById("resultado1");
       let resultadoUrl = document.getElementById("resultado2");
       let formulario = document.getElementById("formulario");
-  
-      formulario.addEventListener("submit", function (e) {
-          let esValido = true;
-  
-          let email = emailInput.value;
-          if (!validarEmail(email)) {
-              resultadoEmail.textContent = "Ingresa un correo electrónico válido.";
-              esValido = false;
+
+      formulario.onsubmit = function (e) {
+          let valido = true;
+
+          if (!emailInput.value.includes("@")) {
+              resultadoEmail.textContent = "correo inválido.";
+              valido = false;
           } else {
-              resultadoEmail.textContent = "correcto";
+              resultadoEmail.textContent = "correcto.";
           }
-  
-          let url = urlInput.value;
-          
-          if (!validarUrl(url)) {
-              resultadoUrl.textContent = "Ingresa un sitio web válido.";
-              esValido = false;
+
+          if (!urlInput.value.startsWith("http")) {
+              resultadoUrl.textContent = "url inválida.";
+              valido = false;
           } else {
-              resultadoUrl.textContent = "correcto";
+              resultadoUrl.textContent = "correcto.";
           }
-  
-          if (!esValido) {
+
+          if (!valido) {
               e.preventDefault();
           }
-      });
-  
-      function validarEmail(email) {
-        let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-          return regexEmail.test(email);
-      }
-  
-      function validarUrl(url) {
-        let regexUrl = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.[a-zA-Z]{2,}(:\d+)?(\/.*)?$/;
-          return regexUrl.test(url);
-      }
-  </script>
-  
+      };
+    </script>
 </body>
-  
 </html>
