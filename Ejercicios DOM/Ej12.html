@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ej12</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej12</title>
 </head>
 <body>
-    
+  <button id="calcularCasiPrimos">Calcular números casi primos</button>
+  <table id="tabla"></table>
+
+  <script>
+    let tabla = document.getElementById("tabla");
+    let numero = 1;
+    for (let i = 0; i < 100; i++) {
+      let fila = tabla.insertRow();
+      for (let j = 0; j < 100; j++) {
+        let celda = fila.insertCell();
+        celda.textContent = numero;
+        numero++;
+      }
+    }
+
+    function esCasiPrimo(n) {
+      let divisores = 0;
+      for (let i = 1; i <= n; i++) {
+        if (n % i === 0) divisores++;
+      }
+      return divisores === 3;
+    }
+
+    document.getElementById("calcularCasiPrimos").onclick = function () {
+      let celdas = document.getElementsByTagName("td");
+      for (let i = 0; i < celdas.length; i++) {
+        let numero = parseInt(celdas[i].textContent);
+        if (esCasiPrimo(numero)) {
+          celdas[i].style.backgroundColor = "yellow";
+        }
+      }
+    };
+  </script>
 </body>
 </html>

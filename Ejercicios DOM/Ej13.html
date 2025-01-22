@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ej13</title>
+</head>
+<body>
+  <div id="checkboxContainer"></div>
+  <p>
+    <button id="marcarTodos">Marcar todos</button>
+    <button id="desmarcarTodos">Desmarcar todos</button>
+  </p>
+
+  <script>
+    for (let i = 0; i < 100; i++) {
+      document.getElementById("checkboxContainer").innerHTML += 
+        `<input type="checkbox"> Número ${i + 1}<br>`;
+    }
+
+    document.getElementById("marcarTodos").onclick = function() {
+      var checkboxes = document.querySelectorAll("input[type='checkbox']");
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true;
+      }
+    };
+
+    document.getElementById("desmarcarTodos").onclick = function() {
+      let checkboxes = document.querySelectorAll("input[type='checkbox']");
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+      }
+    };
+  </script>
+</body>
+</html>
