@@ -31,14 +31,48 @@ body {font-family: arial, helvetica;}
 
         let navX = evento.clientX;
         let navY = evento.clientY;
-        let paginX = evento.clientX;
-        let paginY = evento.clientY;
+        let paginX = evento.pageX;
+        let paginY = evento.pageY;
 
         muestraInformacion([
             "Ratón",
             "Navegador [" + navX + " , " + navY + "]",
-            "Pagina [" + navX + " , " + navY + "]"
+            "Pagina [" + paginX + " , " + paginY + "]"
+        ]);
+        document.getElementById("info").style.backgroundColor = "white";
+    }
+    function teclaPulsada(pulsarT) {
+        let evento = pulsarT || window.event;
+        let tecla = evento.key || String.fromCharCode(evento.keyCode);
+
+        muestraInformacion([
+            "Teclado",
+            "Teclado presionada: " + tecla,
+            "Código de tecla: " + evento.keyCode
+        ]);
+        document.getElementById("info").style.backgroundColor = "#CCE6FF";
+    }
+
+    function pulsarRaton(pulsarR) {
+        let evento = pulsarR || window.event;
+        let mensaje = [];
+        let coordX = event.clientX;
+        let coordY = event.clientY;
+        let paginX = event.pageX;
+        let paginY = event.pageY;
+        document.getElementById("info").style.backgroundColor = "#FFFFCC";
+
+        muestraInformacion([
+            "Ratón",
+            "Navegador [" + coordX +" ," + coordY + "]",
+            "Pagina [" + paginX + " , " + paginY + "]"
         ])
+    }
+
+    window.onload = function () {
+        document.addEventListener("mousemove", moverRaton);
+        document.addEventListener("keypress", teclaPulsada);
+        document.addEventListener("click", pulsarRaton);
     }
     </script>
 

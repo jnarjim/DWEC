@@ -11,8 +11,26 @@ body {font-family: arial, helvetica;}
 <script>
 function informacion(elEvento) {
 	var evento = elEvento || window.event;
+
+	let cordX = evento.clientX;
+	let cordY = evento.clientY;
+
+	let dimensiones = tamanoVentanaNavegador();
+	let horizontal;
+	let vertical;
+	if (cordX < dimensiones[0]/2) {
+		horizontal = "Izquierda ";
+		if (cordY < dimensiones[1]/2) {
+			vertical = "superior";
+		} else {
+			vertical = "inferior";
+		}
+	}
 	
-	muestraInformacion();
+	muestraInformacion([
+		"Ratón",
+		"Has pulsado el raton en la zona " + horizontal + vertical,
+	]);
 }
 
 function muestraInformacion(mensaje) {
@@ -22,23 +40,23 @@ function muestraInformacion(mensaje) {
 	}
 }
 
-function tamanoVentanaNavegador(){
-	// Adaptada de http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
-	var dimensiones = [];
+// function tamanoVentanaNavegador(){
+// 	// Adaptada de http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
+// 	var dimensiones = [];
 	
-	if(typeof(window.innerWidth) == 'number') {
-		// No es IE
-		dimensiones = [window.innerWidth, window.innerHeight];
-	} else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
-		//IE 6 en modo estandar (no quirks)
-		dimensiones = [document.documentElement.clientWidth, document.documentElement.clientHeight];
-	} else if(document.body && (document.body.clientWidth || document.body.clientHeight)) {
-		//IE en modo quirks
-		dimensiones = [document.body.clientWidth, document.body.clientHeight];
-	}
+// 	if(typeof(window.innerWidth) == 'number') {
+// 		// No es IE
+// 		dimensiones = [window.innerWidth, window.innerHeight];
+// 	} else if(document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+// 		//IE 6 en modo estandar (no quirks)
+// 		dimensiones = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+// 	} else if(document.body && (document.body.clientWidth || document.body.clientHeight)) {
+// 		//IE en modo quirks
+// 		dimensiones = [document.body.clientWidth, document.body.clientHeight];
+// 	}
 	
-	return dimensiones;
-}
+// 	return dimensiones;
+// }
 
 document.onclick = informacion;
 
