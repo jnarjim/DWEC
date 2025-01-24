@@ -9,29 +9,6 @@ body {font-family: arial, helvetica;}
 #info h1 {margin: 0;}
 </style>
 <script>
-function informacion(elEvento) {
-	var evento = elEvento || window.event;
-
-	let cordX = evento.clientX;
-	let cordY = evento.clientY;
-
-	let dimensiones = tamanoVentanaNavegador();
-	let horizontal;
-	let vertical;
-	if (cordX < dimensiones[0]/2) {
-		horizontal = "Izquierda ";
-		if (cordY < dimensiones[1]/2) {
-			vertical = "superior";
-		} else {
-			vertical = "inferior";
-		}
-	}
-	
-	muestraInformacion([
-		"Ratón",
-		"Has pulsado el raton en la zona " + horizontal + vertical,
-	]);
-}
 
 function muestraInformacion(mensaje) {
 	document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
@@ -57,6 +34,35 @@ function muestraInformacion(mensaje) {
 	
 // 	return dimensiones;
 // }
+
+function informacion(pulsarZ) {
+	let evento = pulsarZ|| window.event;
+	let dimensiones = [innerWidth,innerHeight];
+	let coordX = parseFloat(evento.clientX);
+	let coordY = parseFloat(evento.clientY);
+	let horizontal;
+	let vertical;
+	if (coordX < dimensiones[0]/2) {
+		horizontal = "izquierda ";
+		if (coordY < dimensiones[1]/2) {
+			vertical = "superior";
+		} else {
+			vertical = "inferior";
+		}
+	} if (coordX > dimensiones[0]/2) {
+		horizontal = "derecha ";
+		if (coordY < dimensiones[1]/2) {
+			vertical = "superior";
+		} else {
+			vertical = "inferior";
+		}
+	}
+	
+	muestraInformacion([
+		"Ratón",
+		"Has pulsado el raton en la zona " + horizontal + vertical,
+	]);
+}
 
 document.onclick = informacion;
 
